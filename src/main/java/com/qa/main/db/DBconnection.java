@@ -39,8 +39,17 @@ public class DBconnection {
 		read();
 	}
 	//Read a specific Customer
+	
 	//Delete a specific Customer
 	//Update a specific Customer
+	public void update(int id, String name) throws SQLException {
+		String sql = "UPDATE customer Set name = ? WHERE id = ?";
+		ps= con.prepareStatement(sql);
+		ps.setString(1, name);
+		ps.setInt(2, id);
+		ps.execute();
+		read();
+	}
 	public void shutdown() throws SQLException {
 		con.close();
 	}
