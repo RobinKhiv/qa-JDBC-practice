@@ -4,4 +4,4 @@
 *.project
 *.iml
 *.classpath
-DBconfig.java
+*DBconfig.java
