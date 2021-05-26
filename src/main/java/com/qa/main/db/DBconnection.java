@@ -17,7 +17,7 @@ public class DBconnection {
 		con = DriverManager.getConnection(DBconfig.url, DBconfig.user, DBconfig.pw);
 	}
 	
-	//Read All
+	//Read All Customers in the `Customers` table
 	public void read() throws SQLException {
 		String sql = "SELECT * FROM customer";
 		ps= con.prepareStatement(sql);
@@ -30,7 +30,17 @@ public class DBconnection {
 						rs.getInt("id"), rs.getString("name")));
 			} while(rs.next());
 	}
-	
+	//Create a new Customer
+	public void create(String name) throws SQLException {
+		String sql = "INSERT INTO customer (name) VALUES (?)";
+		ps= con.prepareStatement(sql);
+		ps.setString(1,name);
+		ps.execute();
+		read();
+	}
+	//Read a specific Customer
+	//Delete a specific Customer
+	//Update a specific Customer
 	public void shutdown() throws SQLException {
 		con.close();
 	}
