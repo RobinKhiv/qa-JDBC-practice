@@ -1,7 +1,7 @@
 /target/
+/src/main/java/com/qa/main/utils/DBconfig.java
 .settings/
 *.idea/
 *.project
 *.iml
 *.classpath
-*DBconfig.java
