@@ -16,4 +16,22 @@ public class DBconnection {
 	public DBconnection() throws SQLException {
 		con = DriverManager.getConnection(DBconfig.url, DBconfig.user, DBconfig.pw);
 	}
+	
+	//Read All
+	public void read() throws SQLException {
+		String sql = "SELECT * FROM customer";
+		ps= con.prepareStatement(sql);
+		rs= ps.executeQuery();
+		if (!rs.next())
+			System.out.println("No data found");
+		else 
+			do {
+				System.out.println(String.format("ID: %d, Name: %s", 
+						rs.getInt("id"), rs.getString("name")));
+			} while(rs.next());
+	}
+	
+	public void shutdown() throws SQLException {
+		con.close();
+	}
 }
