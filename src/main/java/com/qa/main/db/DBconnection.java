@@ -22,6 +22,9 @@ public class DBconnection {
 		String sql = "SELECT * FROM customer";
 		ps= con.prepareStatement(sql);
 		rs= ps.executeQuery();
+
+		System.out.println("Current Data: ");
+		
 		if (!rs.next())
 			System.out.println("No data found");
 		else 
@@ -39,8 +42,20 @@ public class DBconnection {
 		read();
 	}
 	//Read a specific Customer
-	
+	public void readById(int id) throws SQLException {
+		String sql = "SELECT * FROM customer WHERE id = ?";
+		ps= con.prepareStatement(sql);
+		ps.setInt(1, id);
+		rs = ps.executeQuery();
+		
+		if (!rs.next())
+			System.out.println("ID#" + id + " NOT FOUND");
+		else 
+			System.out.println(String.format("ID: %d, Name: %s", 
+					rs.getInt("id"), rs.getString("name")));
+	}
 	//Delete a specific Customer
+	
 	//Update a specific Customer
 	public void update(int id, String name) throws SQLException {
 		String sql = "UPDATE customer Set name = ? WHERE id = ?";

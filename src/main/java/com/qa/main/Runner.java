@@ -9,6 +9,7 @@ public class Runner {
 		DBconnection db = new DBconnection();
 		try {
 			db.read();
+			db.readById(10);
 		} finally {
 			db.shutdown();
 		}
