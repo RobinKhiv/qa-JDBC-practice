@@ -55,7 +55,13 @@ public class DBconnection {
 					rs.getInt("id"), rs.getString("name")));
 	}
 	//Delete a specific Customer
-	
+	public void delete(int id) throws SQLException {
+		String sql = "DELETE FROM customer WHERE id = ?";
+		ps = con.prepareStatement(sql);
+		ps.setInt(1, id);
+		ps.execute();
+		System.out.println("ID " + id + " was DELETED");
+	}
 	//Update a specific Customer
 	public void update(int id, String name) throws SQLException {
 		String sql = "UPDATE customer Set name = ? WHERE id = ?";
